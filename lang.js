@@ -13,7 +13,10 @@
       el.hidden = el.getAttribute('data-lang') !== lang;
     });
     var visible = document.querySelector('[data-lang="' + lang + '"] h1');
-    if (visible) document.title = visible.textContent + ' · IRCC Tracker';
+    if (visible) {
+      var heading = visible.textContent;
+      document.title = heading.indexOf('IRCC Tracker') === 0 ? heading : heading + ' · IRCC Tracker';
+    }
     document.querySelectorAll('a[data-keep-lang]').forEach(function (a) {
       var url = new URL(a.getAttribute('href'), location.href);
       url.searchParams.set('lang', lang);
